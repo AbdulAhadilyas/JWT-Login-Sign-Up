@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import path from 'path';
 import cookieParser from "cookie-parser";
 import autRouter from "./routes/authRoute/authRoute.mjs"
 import ProductRouter from "./routes/authRoute/productsRoutes/ProductRouter.mjs"
@@ -25,6 +26,10 @@ const mongodbURI =
 app.use("/" ,autRouter )
 
 app.use("/" ,ProductRouter )
+
+const __dirname = path.resolve();
+app.use('/', express.static(path.join(__dirname, './web/build')))
+app.use('*', express.static(path.join(__dirname, './web/build')))
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
