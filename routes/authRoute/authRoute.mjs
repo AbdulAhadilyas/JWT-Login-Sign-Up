@@ -167,7 +167,7 @@ router.post("/api/v1/logout", (req, res) => {
     res.send({ message: "Logout successful" });
 })
 
-router.use((req, res, next) => {
+router.use("/api/v1", (req, res, next) => {
 
     console.log("req.cookies: ", req.cookies);
 
